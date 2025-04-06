@@ -1,17 +1,20 @@
 package tn.esprit.rihab_tili_4arctic3.controllers;
 
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import tn.esprit.rihab_tili_4arctic3.entites.Piste;
 import tn.esprit.rihab_tili_4arctic3.services.IPisteServices;
+import tn.esprit.rihab_tili_4arctic3.services.ISkierServices;
 
 import java.util.List;
-
+@AllArgsConstructor
 @RestController
 @RequestMapping("piste")
 public class PisterRestController {
-    @Autowired
+
     private IPisteServices pisteServices;
+    private ISkierServices skierServices;
 
     @PostMapping("add")
     public Piste addPiste(@RequestBody Piste piste) {
@@ -33,4 +36,9 @@ public class PisterRestController {
     public List<Piste> retrieveAllPiste() {
         return pisteServices.retrieveAllPiste();
     }
+    @PutMapping("assignToSkier/{numPiste}/{numSkier}")
+    Piste assignToSkier(@PathVariable long numPiste, @PathVariable long numSkier){
+        return pisteServices.assignToSkier(numPiste, numSkier);
     }
+
+}

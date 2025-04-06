@@ -1,5 +1,6 @@
 package tn.esprit.rihab_tili_4arctic3.entites;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -23,8 +24,11 @@ public class Piste implements Serializable {
      Color color;
      int length;
      int slope;
-@ManyToMany
-Set<Skier> skiers;
+
+    @ManyToMany
+
+    @JsonIgnore
+    Set<Skier> skiers;
 
 
 

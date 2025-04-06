@@ -1,5 +1,6 @@
 package tn.esprit.rihab_tili_4arctic3.entites;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -17,6 +18,7 @@ public class Registration implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     long numRegistration;
     int numWeek;
+    @JsonIgnore
 @ManyToOne
     Skier skier;
 @ManyToOne
