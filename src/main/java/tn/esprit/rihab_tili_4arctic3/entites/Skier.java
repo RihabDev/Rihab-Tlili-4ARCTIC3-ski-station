@@ -6,6 +6,7 @@ import lombok.experimental.FieldDefaults;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 
@@ -33,4 +34,7 @@ List<Registration> registrations;
 @ManyToMany (mappedBy = "skiers")
     Set<Piste> pistes;
 
+
+
+    public Set<Course> courses;
 }

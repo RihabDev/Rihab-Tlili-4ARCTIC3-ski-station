@@ -3,9 +3,12 @@ package tn.esprit.rihab_tili_4arctic3.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tn.esprit.rihab_tili_4arctic3.entites.Course;
+import tn.esprit.rihab_tili_4arctic3.entites.Registration;
+import tn.esprit.rihab_tili_4arctic3.entites.Support;
 import tn.esprit.rihab_tili_4arctic3.repositories.ICourseRepository;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class CourseServicesImpl implements ICourseServices {
@@ -38,4 +41,17 @@ public class CourseServicesImpl implements ICourseServices {
     public List<Course> retrieveAllCourse() {
         return courseRepository.findAll();
     }
-}
+
+    @Override
+    public List<Integer> numWeeksCourseOfInstructorBySupport(Long numInstructor, Support support) {
+        List<Course> courses = courseRepository.findByInstructorNumInstructorAndSupport(numInstructor, support);
+        return courses.stream()
+                .flatMap(c -> c.getRegistrations().stream())
+                .map(Registration::getNumWeek)
+                .distinct()
+                .collect(Collectors.toList());
+    }
+    }
+
+
+

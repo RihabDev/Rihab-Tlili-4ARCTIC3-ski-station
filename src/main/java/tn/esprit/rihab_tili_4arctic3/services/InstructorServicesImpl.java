@@ -45,9 +45,8 @@ public class InstructorServicesImpl implements IInstructorServices {
 
     @Override
     public Instructor addInstructorAndAssignToCourse(Instructor instructor, Long numCourse) {
-        Course course = courseRepository.findById(numCourse).orElse(null);
-        instructor.setCourses((Set<Course>) course);
 
-        return instructorRepository.save(instructor);
+        return instructor;
     }
+
 }
